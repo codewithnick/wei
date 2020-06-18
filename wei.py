@@ -69,13 +69,13 @@ total=0
 drinktotal=0
 drinkitemtotal=0
 def writeinexcel(drinktotal,drinkitemtotal):
-    if(category=='Food'):
-        sheet.cell(row,col+2).value=itemsold
-        sheet.cell(row,col+7).value=grossales
+    if(category=='FOOD'):
+        sheet.cell(row,col+2).value=int(itemsold)
+        sheet.cell(row,col+7).value='$'+grossales[1:]
         pass
-    elif(category=='Cake'):
-        sheet.cell(row,col+3).value=itemsold
-        sheet.cell(row+1,col+7).value=grossales
+    elif(category=='Bakery'):
+        sheet.cell(row,col+3).value=int(itemsold)
+        sheet.cell(row+1,col+7).value='$'+grossales[1:]
         pass
     else:
         drinkitemtotal+=int(itemsold)
@@ -98,8 +98,8 @@ while True:
     except:
         break
 print(total,drinktotal)
-sheet.cell(row,col+5).value=total
-sheet.cell(row+2,col+7).value=drinktotal
+sheet.cell(row,col+5).value='$'+str(total)
+sheet.cell(row+2,col+7).value='$'+str(drinktotal)
 sheet.cell(row,col+1).value=drinkitemtotal
 book.save('database.xlsx')
 driver.quit()
