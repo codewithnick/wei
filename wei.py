@@ -44,6 +44,7 @@ try:
     time.sleep(random.randint(5,9))
     driver.get('https://squareup.com/dashboard/sales/reports/category-sales')
     time.sleep(random.randint(8,10))
+    #time.sleep(random.randint(8,10))
 except:
     print('unable to login trying again')
     time.sleep(1)
@@ -71,11 +72,11 @@ drinkitemtotal=0
 def writeinexcel(drinktotal,drinkitemtotal):
     if(category=='FOOD'):
         sheet.cell(row,col+2).value=int(itemsold)
-        sheet.cell(row,col+7).value='$'+grossales[1:]
+        sheet.cell(row,col+7).value=float(grossales[1:])
         pass
     elif(category=='Bakery'):
         sheet.cell(row,col+3).value=int(itemsold)
-        sheet.cell(row+1,col+7).value='$'+grossales[1:]
+        sheet.cell(row+1,col+7).value=float(grossales[1:])
         pass
     else:
         drinkitemtotal+=int(itemsold)
@@ -98,8 +99,8 @@ while True:
     except:
         break
 print(total,drinktotal)
-sheet.cell(row,col+5).value='$'+str(total)
-sheet.cell(row+2,col+7).value='$'+str(drinktotal)
+sheet.cell(row,col+5).value=total
+sheet.cell(row+2,col+7).value=drinktotal
 sheet.cell(row,col+1).value=drinkitemtotal
 book.save('database.xlsx')
 driver.quit()
