@@ -71,15 +71,15 @@ drinktotal=0
 drinkitemtotal=0
 def writeinexcel(drinktotal,drinkitemtotal):
     if(category=='FOOD'):
-        sheet.cell(row,col+2).value=int(itemsold)
-        sheet.cell(row,col+7).value=float(grossales[1:])
+        sheet.cell(row,col+2).value=int(itemsold.replace(',',''))
+        sheet.cell(row,col+7).value=float(grossales[1:].replace(',',''))
         pass
     elif(category=='Bakery'):
-        sheet.cell(row,col+3).value=int(itemsold)
-        sheet.cell(row+1,col+7).value=float(grossales[1:])
+        sheet.cell(row,col+3).value=int(itemsold.replace(',',''))
+        sheet.cell(row+1,col+7).value=float(grossales[1:].replace(',',''))
         pass
     else:
-        drinkitemtotal+=int(itemsold)
+        drinkitemtotal+=int(itemsold.replace(',',''))
         drinktotal+=float(grossales[1:].replace(',',''))
         pass
     book.save('database.xlsx')
@@ -88,8 +88,9 @@ def writeinexcel(drinktotal,drinkitemtotal):
 while True:
     try:
         i+=1
-        category= driver.find_element_by_xpath('/html/body/div[2]/div/div/div[2]/div[2]/div/div[2]/div/div[1]/div[2]/div[4]/div/div/div/div/div[1]/div[1]/div['+str(i)+']/div/div[1]/span').text
-        print(category)
+        time.sleep(random.randint(3,5))
+        category= driver.find_element_by_xpath('/html/body/div[2]/div/div/div[2]/div[2]/div/div[2]/div/div[1]/div[2]/div[4]/div/div/div/div/div[1]/div[1]/div['+str(i)+']/div/div[1]/span').text                
+        print(category)                         
         itemsold= driver.find_element_by_xpath('/html/body/div[2]/div/div/div[2]/div[2]/div/div[2]/div/div[1]/div[2]/div[4]/div/div/div/div/div[1]/div[1]/div['+str(i)+']/div/div[2]/span').text
         print(itemsold)
         grossales= driver.find_element_by_xpath('/html/body/div[2]/div/div/div[2]/div[2]/div/div[2]/div/div[1]/div[2]/div[4]/div/div/div/div/div[1]/div[1]/div['+str(i)+']/div/div[3]/span').text
