@@ -84,11 +84,11 @@ def writeinexcel(drinktotal,drinkitemtotal):
         pass
     book.save('database.xlsx')
     return drinkitemtotal,drinktotal
-
+driver.execute_script("window.scrollTo(0,document.body.scrollHeight)")
 while True:
     try:
         i+=1
-        time.sleep(random.randint(3,5))
+        #time.sleep(random.randint(3,5))
         category= driver.find_element_by_xpath('/html/body/div[2]/div/div/div[2]/div[2]/div/div[2]/div/div[1]/div[2]/div[4]/div/div/div/div/div[1]/div[1]/div['+str(i)+']/div/div[1]/span').text                
         print(category)                         
         itemsold= driver.find_element_by_xpath('/html/body/div[2]/div/div/div[2]/div[2]/div/div[2]/div/div[1]/div[2]/div[4]/div/div/div/div/div[1]/div[1]/div['+str(i)+']/div/div[2]/span').text
